@@ -1,6 +1,7 @@
 package models;
 
 import javax.print.DocFlavor;
+import java.util.Objects;
 
 public class News {
     public  int id;
@@ -44,5 +45,21 @@ public class News {
 
     public void setDepartId(int departId) {
         this.departId = departId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        News news1 = (News) o;
+        return id == news1.id &&
+                departId == news1.departId &&
+                Objects.equals(topic, news1.topic) &&
+                Objects.equals(news, news1.news);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, topic, news, departId);
     }
 }
