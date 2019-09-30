@@ -3,11 +3,11 @@ package models;
 import java.util.Objects;
 
 public class Users {
-    public  int id;
-    public String name;
-    public String post;
-    public String role;
-    public String departName;
+    private   int id;
+    private String name;
+    private String post;
+    private String role;
+    private String departName;
 
 
     public Users(String name, String post, String role, String departName) {

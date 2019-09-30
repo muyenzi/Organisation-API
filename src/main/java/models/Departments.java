@@ -3,10 +3,10 @@ package models;
 import java.util.Objects;
 
 public class Departments {
-    public   int id;
-    public  String name;
-    public  String info;
-    public  int    empNumber;
+    private    int id;
+    private   String name;
+    private   String info;
+    private   int    empNumber;
 
     public Departments(String name, String info, int empNumber) {
         this.name = name;

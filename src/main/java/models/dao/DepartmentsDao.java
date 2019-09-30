@@ -12,14 +12,12 @@ public interface DepartmentsDao {
 //    void addRestaurantToFoodType(Restaurant restaurant, Foodtype foodtype);
 
     //read
-    List<Departments> AllDepart();
+    List<Departments> AllDepartments();
     Departments findById(int id);
 
-//    void addRestaurantToFoodtype(Restaurant restaurant, Foodtype foodtype);
 
     List<Users> getAllUsersForDepartments(int departId);
 
-    List<Users> getAllUsersForADepartment(int departId);
 
 
     //delete

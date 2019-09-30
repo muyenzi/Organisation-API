@@ -4,10 +4,10 @@ import javax.print.DocFlavor;
 import java.util.Objects;
 
 public class News {
-    public  int id;
-    public String topic ;
-    public String news;
-    public int departId;
+    private   int id;
+    private String topic ;
+    private String news;
+    private int departId;
 
     public News(String topic, String news, int departId) {
         this.topic = topic;
