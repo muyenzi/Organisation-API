@@ -14,14 +14,16 @@
     <style>
 /* Dropdown Button */
 .dropbtn {
-  background-color: #4CAF50;
+  background-color: #2980B9  ;
   color: white;
   padding: 16px;
   font-size: 16px;
   border: none;
 }
 .navbar {
-float:left;
+width:25%;
+background-color: #2980B9;
+
 }
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
@@ -34,7 +36,7 @@ float:left;
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
+  min-width: 190px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -54,10 +56,10 @@ float:left;
 .dropdown:hover .dropdown-content {display: block;}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {background-color: #34495E ;}
 
 body {
-<!-- background-image:url("https://i.etsystatic.com/10626013/r/il/324428/1607541135/il_fullxfull.1607541135_7up9.jpg");-->
+ background-image:url("https://cdn.wallpaper.com/main/2017/09/fernando_mastrangelo_0010_dsc2018.jpg");
 background-repeat:no-repeat;
 background-size:cover;
 text-align:center;
@@ -85,7 +87,7 @@ text-align:center;
 <body><br>
 <h1>ORGANISATION API</h1>
 <div class="navbar">
-                    <a  href="/" >Home</a>
+                    <a class="dropbtn" href="/" >Home</a>
                     <div class="dropdown"><button class="dropbtn">Departments<i class="fa fa-caret-down"></i></button>
                         <div class="dropdown-content">
                             <a href="/departments/new">Add Department</a>

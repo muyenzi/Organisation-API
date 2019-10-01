@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class Departments {
-    private    int id;
-    private   String name;
-    private   String info;
-    private   int    empnumber;
+    private int id;
+    private String name;
+    private String info;
+    private int empnumber;
 
     public Departments(String name, String info, int empnumber) {
         this.name = name;
@@ -64,8 +64,8 @@ public class Departments {
 //    }
 
     public void create() {
-        try (Connection con =DB.sql2o.open()) {
-        String sql = "INSERT INTO departments (name, info, empnumber) VALUES (:name, :info, :empnumber)";
+        try (Connection con = DB.sql2o.open()) {
+            String sql = "INSERT INTO departments (name, info, empnumber) VALUES (:name, :info, :empnumber)";
             int id = (int) con.createQuery(sql, true)
                     .addParameter("name", this.name)
                     .addParameter("info", this.info)
@@ -76,10 +76,8 @@ public class Departments {
     }
 
 
-
-    public static List<Departments> AllDepartments()
-    {
-       String sql="SELECT * FROM departments";
+    public static List<Departments> AllDepartments() {
+        String sql = "SELECT * FROM departments";
         try (Connection con = DB.sql2o.open()) {
             return con.createQuery(sql).throwOnMappingFailure(false).executeAndFetch(Departments.class);
         }
@@ -87,7 +85,7 @@ public class Departments {
 
 
     public static Departments findById(int id) {
-        try(Connection connect = DB.sql2o.open()){
+        try (Connection connect = DB.sql2o.open()) {
             String sql = "SELECT * FROM departments WHERE id= :id;";
             Departments departments = connect.createQuery(sql)
                     .addParameter("id", id)
@@ -105,24 +103,18 @@ public class Departments {
         return null;
     }
 
-//    @Override
-//    public List<Users> getAllUsersForADepartments(int departId) {
-//        return null;
-//    }
 
-
-    public void deleteById(int id) {
-
+    public static void deleteById(int id) {
+        String sql = "DELETE from departments WHERE id=:id";
+        try (Connection con = DB.sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 
 
-    public void clearAll() {
-
-    }
-
-
-    public BitSet Department(int departId) {
-        return null;
-    }
 }
 
