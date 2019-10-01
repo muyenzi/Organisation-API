@@ -1,15 +1,19 @@
 package models;
 
+import org.sql2o.Connection;
+import org.sql2o.Sql2oException;
+
 import javax.print.DocFlavor;
+import java.util.List;
 import java.util.Objects;
 
 public class News {
-    private   int id;
-    private String topic ;
+    private int id;
+    private String topic;
     private String news;
     private int departId;
 
-    public News(String topic, String news, int departId) {
+    public News(String topic, String news) {
         this.topic = topic;
         this.news = news;
         this.departId = departId;
@@ -62,4 +66,36 @@ public class News {
     public int hashCode() {
         return Objects.hash(id, topic, news, departId);
     }
+
+    public void create() {
+
+        try (Connection con = DB.sql2o.open()) {
+            String sql = "INSERT INTO news (topic, news) VALUES (:topic,:news)";
+            int id = (int) con.createQuery(sql, true)
+                    .addParameter("topic", this.topic)
+                    .addParameter("news", this.news)
+                    .executeUpdate()
+                    .getKey();
+        }
+    }
+
+    public static  List<News> AllNews() {
+        String sql = "SELECT * FROM news";
+        try (Connection con = DB.sql2o.open()) {
+            return con.createQuery(sql).throwOnMappingFailure(false).executeAndFetch(News.class);
+        }
+    }
+
+
+    public List<News> getAllNewsForDepartments(int departId) {
+        return null;
+    }
+
+
+
+
+    public List<News> getAllNewsForDepartments() {
+        return null;
+    }
+
 }

@@ -1,0 +1,33 @@
+{{#partial "content"}}
+        <style>
+    body {
+
+ background-image:url("https://i.etsystatic.com/10626013/r/il/324428/1607541135/il_fullxfull.1607541135_7up9.jpg");
+    background-repeat:no-repeat;
+    background-size:cover;
+    text-align:center;
+    }
+    table, th, td {
+  border: 1px solid black;
+}
+   </style>
+        <h3>Departments List</h3>
+        <table style="width:100%">
+            <tr>
+                <th>Names</th>
+                <th>Description</th>
+                <th>Number of Employees</th>
+            </tr>
+        {{if departments}}
+        {{#each departments }}
+            <tr>
+                    <td>{{name}}</td>
+                    <td>{{info}}</td>
+                    <td>{{empnumber}}</td>
+                </tr>
+
+        {{/each}}
+    {{else}}
+    </table>
+    {{/partial}}
+    {{>layout.hbs}}

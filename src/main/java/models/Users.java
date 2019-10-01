@@ -1,5 +1,9 @@
 package models;
 
+import org.sql2o.Connection;
+import org.sql2o.Sql2oException;
+
+import java.util.List;
 import java.util.Objects;
 
 public class Users {
@@ -7,14 +11,14 @@ public class Users {
     private String name;
     private String post;
     private String role;
-    private String departName;
+    private String departname;
 
 
-    public Users(String name, String post, String role, String departName) {
+    public Users(String name, String post, String role, String departname) {
         this.name = name;
         this.post = post;
         this.role = role;
-        this.departName = departName;
+        this.departname = departname;
     }
 
     public int getId() {
@@ -33,8 +37,8 @@ public class Users {
         return role;
     }
 
-    public String getDepartName() {
-        return departName;
+    public String getDepartname() {
+        return departname;
     }
 
     public void setId(int id) {
@@ -53,8 +57,8 @@ public class Users {
         this.role = role;
     }
 
-    public void setDepartName(String departName) {
-        this.departName = departName;
+    public void setDepartname(String departname) {
+        this.departname = departname;
     }
 
     @Override
@@ -66,11 +70,59 @@ public class Users {
                 Objects.equals(name, users.name) &&
                 Objects.equals(post, users.post) &&
                 Objects.equals(role, users.role) &&
-                Objects.equals(departName, users.departName);
+                Objects.equals(departname, users.departname);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, post, role, departName);
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name, post, role, departname);
+//    }
+
+    public void create() {
+        try(Connection con =DB.sql2o.open()){
+        String sql = "INSERT INTO users (name, post, role, departname) VALUES (:name,:post,:role,:departname)";
+            int id = (int) con.createQuery(sql, true)
+                    .addParameter("name", this.name)
+                    .addParameter("post", this.post)
+                    .addParameter("role", this.role)
+                    .addParameter("departname" ,this.departname)
+                    .executeUpdate()
+                    .getKey();
+        }
+    }
+
+    public void addUserToDepartment(Users users, Departments departments) {
+
+    }
+
+
+    public static List<Users> AllUsers() {
+        String sql="SELECT * FROM users";
+        try (Connection con = DB.sql2o.open()) {
+            return con.createQuery(sql).throwOnMappingFailure(false).executeAndFetch(Users.class);
+        }
+    }
+
+
+    public void deleteById(int id) {
+
+    }
+
+
+    public void clearAll() {
+
+    }
+
+    public Users findById(int userId) {
+        String sql = "SELECT from users WHERE id=:id"; //raw sql
+        try (Connection con =DB.sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+
+        return null;
     }
 }

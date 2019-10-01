@@ -1,17 +1,22 @@
 package models;
+import org.sql2o.Connection;
 
+import org.sql2o.Sql2oException;
+
+import java.util.BitSet;
+import java.util.List;
 import java.util.Objects;
 
 public class Departments {
     private    int id;
     private   String name;
     private   String info;
-    private   int    empNumber;
+    private   int    empnumber;
 
-    public Departments(String name, String info, int empNumber) {
+    public Departments(String name, String info, int empnumber) {
         this.name = name;
         this.info = info;
-        this.empNumber = empNumber;
+        this.empnumber = empnumber;
     }
 
     public String getName() {
@@ -22,8 +27,8 @@ public class Departments {
         return info;
     }
 
-    public int getEmpNumber() {
-        return empNumber;
+    public int getEmpnumber() {
+        return empnumber;
     }
 
     public void setId(int id) {
@@ -38,8 +43,8 @@ public class Departments {
         this.info = info;
     }
 
-    public void setEmpNumber(int empNumber) {
-        this.empNumber = empNumber;
+    public void setEmpnumber(int empnumber) {
+        this.empnumber = empnumber;
     }
 
     @Override
@@ -48,13 +53,76 @@ public class Departments {
         if (o == null || getClass() != o.getClass()) return false;
         Departments that = (Departments) o;
         return id == that.id &&
-                empNumber == that.empNumber &&
+                empnumber == that.empnumber &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(info, that.info);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, info, empNumber);
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name, info, empnumber);
+//    }
+
+    public void create() {
+        try (Connection con =DB.sql2o.open()) {
+        String sql = "INSERT INTO departments (name, info, empnumber) VALUES (:name, :info, :empnumber)";
+            int id = (int) con.createQuery(sql, true)
+                    .addParameter("name", this.name)
+                    .addParameter("info", this.info)
+                    .addParameter("empnumber", this.empnumber)
+                    .executeUpdate()
+                    .getKey();
+        }
+    }
+
+
+
+    public static List<Departments> AllDepartments()
+    {
+       String sql="SELECT * FROM departments";
+        try (Connection con = DB.sql2o.open()) {
+            return con.createQuery(sql).throwOnMappingFailure(false).executeAndFetch(Departments.class);
+        }
+    }
+
+
+    public static Departments findById(int id) {
+        try(Connection connect = DB.sql2o.open()){
+            String sql = "SELECT * FROM departments WHERE id= :id;";
+            Departments departments = connect.createQuery(sql)
+                    .addParameter("id", id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetchFirst(Departments.class);
+            if (departments == null) {
+                throw new UnsupportedOperationException("Sorry, this department cannot be found.");
+            }
+            return departments;
+        }
+    }
+
+
+    public static List<Users> getAllUsersForDepartments(int departId) {
+        return null;
+    }
+
+//    @Override
+//    public List<Users> getAllUsersForADepartments(int departId) {
+//        return null;
+//    }
+
+
+    public void deleteById(int id) {
+
+    }
+
+
+    public void clearAll() {
+
+    }
+
+
+    public BitSet Department(int departId) {
+        return null;
     }
 }
+

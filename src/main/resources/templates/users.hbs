@@ -1,0 +1,38 @@
+{{#partial "content"}}
+    <style>
+    body {
+ background-image:url("https://i.etsystatic.com/10626013/r/il/324428/1607541135/il_fullxfull.1607541135_7up9.jpg");
+    background-repeat:no-repeat;
+    background-size:cover;
+    text-align:center;
+    }
+        table, th, td {
+  border: 1px solid black;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+   </style>
+    <h3>Users List</h3>
+    <table style="width:100%">
+        <tr>
+            <th>Names</th>
+            <th>Post</th>
+            <th>Role</th>
+            <th>Department Name</th>
+        </tr>
+    {{if users}}
+    {{#each users }}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{post}}</td>
+                <td>{{role}}</td>
+                <td>{{departname}}</td>
+            </tr>
+
+    {{/each}}
+{{else}}
+    </table>
+{{/partial}}
+{{>layout.hbs}}

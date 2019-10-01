@@ -1,0 +1,46 @@
+{{#partial "content"}}
+    <style>
+form{
+top:50%;
+color:black;
+}
+body{
+<!--   background-image:url("https://3.bp.blogspot.com/-zXgflgKBw-s/T-lf6ZSpmbI/AAAAAAAABjI/AbepKthPt5I/s1600/Animal%20HD%20Wallpapers.jpg");-->
+       background-repeat:no-repeat;
+       background-size:cover;
+       text-align:center;
+}
+    </style><br><br><br><br><br>
+    <h2>Register User</h2><hr>
+    <div class="row">
+        <div class="col col-sm-6 form-left">
+            <br/>
+            <form action="/users/new" method="post" >
+                <div class="form-group">
+                    <label for="name">Names </label><br>
+                    <input class="form-control" type="text" id="name" name="name" placeholder="Employee name"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="post">Post</label><br>
+                    <input class="form-control" type="text" id="post" name="post" placeholder="Employee post"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="role"> Role </label><br>
+                    <input class="form-control" type="text" id="role" name="role" placeholder=" Employee role"/>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="departname"> Department Name </label><br>
+                    <input class="form-control" type="text" id="departname" name="departname" placeholder="department Name"/>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save User</button>
+            </form>
+        </div>
+    </div>
+{{/partial}}
+
+{{>layout.hbs}}
