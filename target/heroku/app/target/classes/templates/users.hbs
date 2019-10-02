@@ -1,0 +1,39 @@
+{{#partial "content"}}
+    <style>
+    body {
+
+    background-repeat:no-repeat;
+    background-size:cover;
+    text-align:center;
+    }
+
+.container {
+background-color:#2980B9;
+}
+   </style>
+    <h3>Users List</h3>
+    <div class="container">
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Names</th>
+            <th>Post</th>
+            <th>Role</th>
+            <th>Department Name</th>
+        </tr>
+    </thead>
+    <tbody>
+    {{if users}}
+    {{#each users }}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{post}}</td>
+                <td>{{role}}</td>
+                <td>{{departname}}</td>
+            </tr>
+
+    {{/each}}
+{{else}}
+    </table>
+{{/partial}}
+{{>layout.hbs}}

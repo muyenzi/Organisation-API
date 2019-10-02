@@ -11,25 +11,29 @@
  * License
  
  
-##  App description
+###  App description
 
  This application will allow Users to add different Departments,
  we found in huge organisation and News in that Organisation. This project is mainly concerned about using API.
  
-## TECHNOLOGIES USED
+### TECHNOLOGIES USED
 
  * IntelliJ IDEA Community EditionJava
  * Spark Java Web Framework
  * Handlebars Template Engine
  * PostgreSQL for Database
  
-## INSTALLATION
+### INSTALLATION
 
  Install IntelliJ IDEAL Community Edition
  Clone this repository(https://github.com/muyenzi/Organisation-API.git)
  Open it within IntelliJ
-
-## CONTACTS
+ 
+### Project Link
+ 
+ https://organisation-api24.herokuapp.com/
+ 
+### CONTACTS
    
    For support contact us:
    
@@ -39,7 +43,7 @@
    * Slack:Muyenziraissa.
    
    
-   ### LICENSE
+### LICENSE
    
    MIT Copyright (c) [2019][Raissa Muyenzi].
 

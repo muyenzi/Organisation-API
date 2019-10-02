@@ -1,0 +1,24 @@
+{{#partial "content"}}
+    <style>
+    body {
+
+<!-- background-image:url("https://i.etsystatic.com/10626013/r/il/324428/1607541135/il_fullxfull.1607541135_7up9.jpg");-->
+    background-repeat:no-repeat;
+    background-size:cover;
+    text-align:center;
+    }
+   </style>
+    <h3>General News</h3>
+    {{if news}}
+    {{#each news }}
+        <div class="container">
+            <div class="jumbotron">
+
+                <h2>{{topic}}</h2>
+                <p>{{news}} </p>
+            </div>
+        </div>
+    {{/each}}
+{{else}}
+{{/partial}}
+{{>layout.hbs}}

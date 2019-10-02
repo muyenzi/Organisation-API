@@ -1,0 +1,40 @@
+{{#partial "content"}}
+    <style>
+form{
+<!--top:50%;-->
+color:black;
+
+}
+body{
+       background-repeat:no-repeat;
+       background-size:cover;
+       text-align:center;
+}
+    </style><br><br><br><br><br>
+    <h2>Add a Department</h2><hr>
+    <div class="row">
+        <div class="col col-sm-6 form-center">
+            <br/>
+            <form action="/departments/new" method="post" >
+                <div class="form-group">
+                    <label for="name">Department Name </label><br>
+                    <input class="form-control" type="text" id="name" name="name" placeholder="Department name"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="info">Department Description </label><br>
+                    <input class="form-control" type="text" id="info" name="info" placeholder="Department description"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="empnumber">Number of Employees </label><br>
+                    <input class="form-control" type="text" id="empnumber" name="empnumber" placeholder="Number of employees"/>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save Department</button>
+            </form>
+        </div>
+    </div>
+{{/partial}}
+
+{{>layout.hbs}}
