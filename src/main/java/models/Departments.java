@@ -104,7 +104,7 @@ public class Departments {
     }
 
 
-    public static void deleteById(int id) {
+    public static void deleteById(String id) {
         String sql = "DELETE from departments WHERE id=:id";
         try (Connection con = DB.sql2o.open()) {
             con.createQuery(sql)

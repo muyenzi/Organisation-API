@@ -1,33 +1,38 @@
 {{#partial "content"}}
         <style>
     body {
-
- background-image:url("https://blog.hdwallsource.com/wp-content/uploads/2016/02/solid-color-wallpaper-21965-22518-hd-wallpapers.jpg");
+    background-image:url("https://cdn.wallpaper.com/main/2017/09/fernando_mastrangelo_0010_dsc2018.jpg");
     background-repeat:no-repeat;
     background-size:cover;
     text-align:center;
     }
-    table, th, td {
-  border: 1px solid black;
+
+.container {
+background-color:#2980B9;
 }
    </style>
         <h3>Departments List</h3>
-        <table style="width:100%">
+        <div class="container">
+        <table class="table table-striped">
+        <thead>
             <tr>
                 <th>Names</th>
                 <th>Description</th>
                 <th>Number of Employees</th>
             </tr>
+        </thead>
+        <tbody>
         {{if departments}}
         {{#each departments }}
             <tr>
                     <td>{{name}}</td>
                     <td>{{info}}</td>
-                <td>{{empnumber}} <a href="/departments/delete"><button class="btn btn-danger">Delete</button></a> </td>
+                <td>{{empnumber}} <a href="/departments/:id"><button class="btn btn-danger" style="position:relative;left:100px;">Delete</button></a> </td>
                 </tr>
 
         {{/each}}
     {{else}}
     </table>
+    </div>
     {{/partial}}
     {{>layout.hbs}}

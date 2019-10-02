@@ -12,11 +12,17 @@ public class News {
     private String topic;
     private String news;
     private int departId;
+    private String departname;
 
-    public News(String topic, String news) {
+    public News(String departname , String topic, String news) {
         this.topic = topic;
         this.news = news;
+        this.departname=departname;
         this.departId = departId;
+    }
+
+    public String getDepartname() {
+        return departname;
     }
 
     public int getId() {
@@ -51,6 +57,10 @@ public class News {
         this.departId = departId;
     }
 
+    public void setDepartname(String departname) {
+        this.departname = departname;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -59,19 +69,21 @@ public class News {
         return id == news1.id &&
                 departId == news1.departId &&
                 Objects.equals(topic, news1.topic) &&
-                Objects.equals(news, news1.news);
+                Objects.equals(news, news1.news) &&
+                Objects.equals(departname, news1.departname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, topic, news, departId);
+        return Objects.hash(id, topic, news, departId, departname);
     }
 
     public void create() {
 
         try (Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO news (topic, news) VALUES (:topic,:news)";
+            String sql = "INSERT INTO news (departname, topic, news ) VALUES (:departname,:topic,:news)";
             int id = (int) con.createQuery(sql, true)
+                    .addParameter("departname" , this.departname)
                     .addParameter("topic", this.topic)
                     .addParameter("news", this.news)
                     .executeUpdate()
@@ -86,13 +98,9 @@ public class News {
         }
     }
 
-
     public List<News> getAllNewsForDepartments(int departId) {
         return null;
     }
-
-
-
 
     public List<News> getAllNewsForDepartments() {
         return null;
