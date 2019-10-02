@@ -22,7 +22,9 @@ public class App {
 
         get("/", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
-            return new ModelAndView(model, "index.hbs");
+            List<News> news =News.AllNews();
+            model.put("news", news);
+            return new ModelAndView(model, "news.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/departments/new", (request, response) -> {
@@ -112,7 +114,19 @@ public class App {
             return new ModelAndView(model, "news.hbs");
         }, new HandlebarsTemplateEngine());
 
+        get("/departments/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int deleteId=Integer.parseInt(req.queryParams("id"));
+            Departments.deleteById(deleteId);
+            return new ModelAndView(model, "departments.hbs");
+        }, new HandlebarsTemplateEngine());
 
+        get("/departments/edit", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int deleteId=Integer.parseInt(req.queryParams("id"));
+            Departments.deleteById(deleteId);
+            return new ModelAndView(model, "departments.hbs");
+        }, new HandlebarsTemplateEngine());
     }
 }
 
